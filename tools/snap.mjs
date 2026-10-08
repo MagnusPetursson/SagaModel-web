@@ -36,13 +36,13 @@ try {
     page.on('console', (m) => { if (['error', 'warn'].includes(m.type())) console.log(`[${v}] console.${m.type()}: ${m.text()}`); });
     page.on('pageerror', (e) => { failed = true; console.log(`[${v}] pageerror: ${e.message}`); });
     const t0 = Date.now();
-    await page.goto(base + (v === 'overview' ? '' : '#cam=' + v));
+    await page.goto(base + (v === 'overview' ? '' : v.startsWith('view=') ? '#' + v : '#cam=' + v));
     await page.waitForFunction('window.sagaReady === true', { timeout: soft ? 300000 : 120000 });
     await new Promise((r) => setTimeout(r, soft ? 15000 : 2500));   // textures + HDRI + shadow pass
     const gpu = await page.evaluate(() => { const g = document.createElement('canvas').getContext('webgl2');
       const e = g.getExtension('WEBGL_debug_renderer_info'); return e ? g.getParameter(e.UNMASKED_RENDERER_WEBGL) : '?'; });
     const stats = await page.$eval('#stats', (e) => e.textContent);
-    await page.screenshot({ path: path.join(outDir, v + '.png') });
+    await page.screenshot({ path: path.join(outDir, v.replace(/[^\w.-]+/g, '_').slice(0, 60) + '.png') });
     console.log(`${v}: ready in ${((Date.now() - t0) / 1000).toFixed(1)} s · ${stats} · ${gpu}`);
     await page.close();
   }

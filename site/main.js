@@ -225,6 +225,16 @@ function goCam(c, instant = false) {
             p1: new THREE.Vector3(...c.pos), t1: new THREE.Vector3(...c.target), f1: c.vfov };
 }
 function fromHash() {
+  const v = /view=([-\d.,]+)/.exec(location.hash);          // #view=px,py,pz,tx,ty,tz[,fov] in Blender coords (Z up)
+  if (v) {
+    const n = v[1].split(',').map(Number);
+    if (n.length >= 6 && n.every(Number.isFinite)) {
+      const w = (x, y, z) => [x, z, -y];
+      goCam({ name: '', pos: w(n[0], n[1], n[2]), target: w(n[3], n[4], n[5]), vfov: n[6] || 50 }, true);
+      history.replaceState(null, '', '#' + v[0]);
+      return true;
+    }
+  }
   const m = /cam=([^&]+)/.exec(location.hash);
   const c = m && info.cameras.find((k) => k.name === decodeURIComponent(m[1]));
   if (c) goCam(c, true);

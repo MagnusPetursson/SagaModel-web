@@ -25,6 +25,61 @@ OUT = os.path.abspath(argv[0] if argv else "build")
 os.makedirs(os.path.join(OUT, "tex"), exist_ok=True)
 scene = bpy.context.scene
 TEX = 1024
+SRC_REPO = os.environ.get("SAGA_REPO", "")
+
+
+def relink_missing():
+    """Builders link some files by absolute path (/home/maggi/.../refs/branding/fonts/Roboto-Bold.ttf). On another
+    machine or a CI runner those paths don't exist and Blender silently falls back (text renders as boxes).
+    Re-resolve every missing font/image by its path inside the repo (or by file name), and fail loudly if
+    anything is still missing."""
+    if not SRC_REPO:
+        return
+    index = {}
+    for root, dirs, files in os.walk(SRC_REPO):
+        dirs[:] = [d for d in dirs if d not in (".git", "renders", "export")]
+        for f in files:
+            index.setdefault(f, []).append(os.path.join(root, f))
+    missing = []
+    mat_images = {n.image for m in bpy.data.materials if m.node_tree for n in m.node_tree.nodes
+                  if n.type == "TEX_IMAGE" and n.image}            # world HDRI is git-ignored: not fatal
+    for kind, items in (("font", bpy.data.fonts), ("image", bpy.data.images)):
+        for it in items:
+            if it.packed_file or not it.filepath or it.filepath == "<builtin>":
+                continue
+            if kind == "image" and it.source not in ("FILE", "SEQUENCE", "TILED"):
+                continue
+            p = bpy.path.abspath(it.filepath)
+            if os.path.exists(p):
+                continue
+            tail = p.replace("\\", "/").split("/SagaModel/", 1)
+            cand = os.path.join(SRC_REPO, tail[1]) if len(tail) == 2 else None
+            if not (cand and os.path.exists(cand)):
+                hits = index.get(os.path.basename(p), [])
+                cand = hits[0] if len(hits) == 1 else None
+            if cand:
+                if kind == "font":
+                    # changing a VectorFont's filepath doesn't reload its glyphs: load anew and swap users
+                    new = bpy.data.fonts.load(cand, check_existing=True)
+                    for cu in bpy.data.curves:
+                        for slot in ("font", "font_bold", "font_italic", "font_bold_italic"):
+                            if getattr(cu, slot, None) == it:
+                                setattr(cu, slot, new)
+                        if hasattr(cu, "body"):
+                            cu.update_tag()
+                else:
+                    it.filepath = cand
+                    it.reload()
+                print(f"relinked {kind}: {it.name} -> {os.path.relpath(cand, SRC_REPO)}")
+            elif it.users and (kind == "font" or it in mat_images):
+                missing.append(f"{kind} {it.name}: {p}")
+            else:
+                print(f"warning: unused/non-material {kind} missing: {it.name}: {p}")
+    if missing:
+        raise SystemExit("EXPORT FAILED, missing files:\n  " + "\n  ".join(missing))
+
+
+relink_missing()
 
 
 def to_web(v):

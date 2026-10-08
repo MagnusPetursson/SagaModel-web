@@ -33,8 +33,8 @@ fi
 # the .blend references textures as //assets/...: make them resolve next to the copy
 ln -s "$SRC_REPO/assets" "$BUILD/assets"
 echo "exporting $BLEND_REL @ $REV"
-"$BLENDER" -b "$BUILD/src.blend" --python export/export_glb.py -- "$BUILD" 2>&1 \
-  | grep -E "triplanar|procedural base|EXPORT OK|Error|Traceback" || true
+SAGA_REPO="$SRC_REPO" "$BLENDER" -b "$BUILD/src.blend" --python export/export_glb.py -- "$BUILD" 2>&1 \
+  | grep -E "triplanar|procedural base|relinked|warning:|EXPORT|^  (font|image) |Error|Traceback" || true
 [ -f "$BUILD/saga_raw.glb" ] || { echo "export failed" >&2; exit 1; }
 
 if ! node node_modules/@gltf-transform/cli/bin/cli.js optimize "$BUILD/saga_raw.glb" "$BUILD/saga.glb" \
