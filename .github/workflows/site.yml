@@ -1,0 +1,36 @@
+name: Site code
+# Viewer-code changes (site/) go live without a model rebuild: the site files on gh-pages are replaced,
+# model/ is kept. Model rebuilds come from the SagaModel repo's "Web preview" workflow.
+on:
+  push:
+    branches: [main]
+    paths: ['site/**']
+  workflow_dispatch:
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  site:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: { path: src }
+      - uses: actions/checkout@v4
+        with: { ref: gh-pages, path: pages }
+      - name: Replace site files, keep the model
+        run: |
+          cp -r src/site/* pages/
+          cd pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "no site changes"; exit 0; fi
+          MSG="$(git log -1 --format=%s | sed 's/ (site code [0-9a-f]*)$//') (site code ${GITHUB_SHA::7})"
+          # keep gh-pages a single orphan commit (no history bloat from the ~19 MB model)
+          git checkout -q --orphan fresh && git commit -q -m "$MSG"
+          git push -q -f origin fresh:gh-pages

@@ -12,19 +12,28 @@ Site: https://magnuspetursson.github.io/SagaModel-web/
 
 ## How it updates
 
+Fully on GitHub, so no local machine needs to be on:
+
 ```
-SagaModel commit touching the .blend or assets/
-  └─ .git/hooks/post-commit  (installed by tools/install_hook.sh, background, logs to cache/publish.log)
+push to SagaModel main touching *.blend or assets/
+  └─ SagaModel/.github/workflows/web-preview.yml  (GitHub Actions, ~5 min; Blender 5.2.2 cached)
        └─ tools/publish.sh
             ├─ tools/build.sh   git show HEAD:SagaV2_work.blend → headless Blender export/export_glb.py
             │                   → gltf-transform (meshopt, WebP 1k, join/weld/simplify) → dist/
-            ├─ tools/snap.mjs   headless Chrome smoke test (fails on page errors / load timeout)
-            └─ force-push dist/ as a single orphan commit to gh-pages  (no history bloat)
+            ├─ tools/snap.mjs   headless Chrome smoke test (software GL in CI; fails on page errors)
+            └─ force-push dist/ as a single orphan commit to gh-pages  (deploy key, secret SAGA_WEB_DEPLOY_KEY)
+
+push to SagaModel-web main touching site/
+  └─ .github/workflows/site.yml   swaps the viewer files on gh-pages, keeps model/
 ```
 
-Manual: `tools/publish.sh` (committed HEAD), or `tools/build.sh --file ~/…/SagaV2_work.blend` to preview the
-live working copy locally (`cd dist && python3 -m http.server`). Screenshots of any views:
-`node tools/snap.mjs out/ overview MuralFront LaserDetail`.
+Both workflows can be started by hand from the repo's Actions tab (Run workflow).
+
+Local, any machine with Blender ≥ 5 and Node: `tools/publish.sh` (committed HEAD), or
+`tools/build.sh --file ~/…/SagaV2_work.blend` to preview the live working copy without publishing
+(`cd dist && python3 -m http.server`). Screenshots of any views:
+`node tools/snap.mjs out/ overview MuralFront LaserDetail` (`SNAP_URL=https://… ` tests the live site).
+`tools/install_hook.sh` (a local post-commit hook) still exists but is no longer used.
 
 The exporter never writes the .blend: it works on a copy and only changes things in memory.
 
@@ -44,11 +53,10 @@ GI, so interiors read brighter and flatter than the Cycles stills, by design.
 
 ## Setup on a new machine
 
-Needs Blender (5.x) on PATH, Node ≥ 20, git push access to this repo.
+Needs Blender (5.x), Node ≥ 20, git push access to this repo — only for local builds; CI needs nothing local.
 
 ```
 npm ci                 # gltf-transform + puppeteer (downloads headless Chrome)
-tools/install_hook.sh  # per machine; --remove to uninstall
 ```
 
 ## Licensing

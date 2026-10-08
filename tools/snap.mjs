@@ -21,10 +21,13 @@ const server = http.createServer((req, res) => {
 const port = server.address().port;
 const base = process.env.SNAP_URL || `http://127.0.0.1:${port}/`;     // SNAP_URL=https://… tests the live site
 
+const soft = process.env.SNAP_SOFT === '1';                  // CI: no GPU, software GL (slow but fine for a load test)
 const browser = await puppeteer.launch({
   headless: 'shell',
-  args: ['--use-angle=vulkan', '--enable-features=Vulkan', '--ignore-gpu-blocklist', '--enable-gpu', '--window-size=1600,900'],
-  defaultViewport: { width: 1600, height: 900 },
+  protocolTimeout: 600000,
+  args: soft ? ['--no-sandbox', '--enable-unsafe-swiftshader', '--window-size=1600,900']
+             : ['--use-angle=vulkan', '--enable-features=Vulkan', '--ignore-gpu-blocklist', '--enable-gpu', '--window-size=1600,900'],
+  defaultViewport: soft ? { width: 800, height: 450 } : { width: 1600, height: 900 },
 });
 let failed = false;
 try {
@@ -34,8 +37,8 @@ try {
     page.on('pageerror', (e) => { failed = true; console.log(`[${v}] pageerror: ${e.message}`); });
     const t0 = Date.now();
     await page.goto(base + (v === 'overview' ? '' : '#cam=' + v));
-    await page.waitForFunction('window.sagaReady === true', { timeout: 120000 });
-    await new Promise((r) => setTimeout(r, 2500));          // textures + HDRI + shadow pass
+    await page.waitForFunction('window.sagaReady === true', { timeout: soft ? 300000 : 120000 });
+    await new Promise((r) => setTimeout(r, soft ? 15000 : 2500));   // textures + HDRI + shadow pass
     const gpu = await page.evaluate(() => { const g = document.createElement('canvas').getContext('webgl2');
       const e = g.getExtension('WEBGL_debug_renderer_info'); return e ? g.getParameter(e.UNMASKED_RENDERER_WEBGL) : '?'; });
     const stats = await page.$eval('#stats', (e) => e.textContent);
