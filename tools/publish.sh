@@ -4,6 +4,7 @@
 # Overlapping calls coalesce: a commit landing during a publish triggers one more round afterwards.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
+. "$HERE/tools/env.sh"
 mkdir -p "$HERE/cache"
 LOCK="$HERE/cache/publish.lock" PENDING="$HERE/cache/publish.pending"
 exec 9>"$LOCK"

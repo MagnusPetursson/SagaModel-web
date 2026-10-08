@@ -7,7 +7,6 @@
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
 SRC_REPO="${SAGA_REPO:-$HOME/Documents/Reposepos/SagaModel}"
-BLENDER="${BLENDER:-blender}"
 BLEND_REL="SagaV2_work.blend"
 REV=HEAD FILE=""
 while [ $# -gt 0 ]; do
@@ -20,6 +19,7 @@ done
 BUILD="$HERE/build"
 DIST="$HERE/dist"
 cd "$HERE"
+. "$HERE/tools/env.sh"
 [ -d node_modules/@gltf-transform/cli ] || npm ci --silent
 
 rm -rf "$BUILD" && mkdir -p "$BUILD"
@@ -37,10 +37,13 @@ echo "exporting $BLEND_REL @ $REV"
   | grep -E "triplanar|procedural base|EXPORT OK|Error|Traceback" || true
 [ -f "$BUILD/saga_raw.glb" ] || { echo "export failed" >&2; exit 1; }
 
-npx gltf-transform optimize "$BUILD/saga_raw.glb" "$BUILD/saga.glb" \
-  --compress meshopt --palette false --instance false \
-  --texture-compress webp --texture-size 1024 --simplify-error 0.0001 2>&1 | grep -E "^info|rror" || true
-[ -f "$BUILD/saga.glb" ] || { echo "optimize failed" >&2; exit 1; }
+if ! node node_modules/@gltf-transform/cli/bin/cli.js optimize "$BUILD/saga_raw.glb" "$BUILD/saga.glb" \
+    --compress meshopt --palette false --instance false \
+    --texture-compress webp --texture-size 1024 --simplify-error 0.0001 > "$BUILD/optimize.log" 2>&1 \
+   || [ ! -f "$BUILD/saga.glb" ]; then
+  cat "$BUILD/optimize.log" >&2; echo "optimize failed" >&2; exit 1
+fi
+grep -E "^info" "$BUILD/optimize.log" || true
 
 ENV="$HERE/cache/env_1k.hdr"     # Poly Haven CC0 'buikslotermeerplein' (same HDRI as the renders), 1k
 [ -f "$ENV" ] || { mkdir -p cache; curl -sfL -o "$ENV" https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/buikslotermeerplein_1k.hdr; }
