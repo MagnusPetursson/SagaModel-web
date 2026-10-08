@@ -19,6 +19,7 @@ const server = http.createServer((req, res) => {
   fs.createReadStream(f).pipe(res);
 }).listen(0);
 const port = server.address().port;
+const base = process.env.SNAP_URL || `http://127.0.0.1:${port}/`;     // SNAP_URL=https://… tests the live site
 
 const browser = await puppeteer.launch({
   headless: 'shell',
@@ -32,7 +33,7 @@ try {
     page.on('console', (m) => { if (['error', 'warn'].includes(m.type())) console.log(`[${v}] console.${m.type()}: ${m.text()}`); });
     page.on('pageerror', (e) => { failed = true; console.log(`[${v}] pageerror: ${e.message}`); });
     const t0 = Date.now();
-    await page.goto(`http://127.0.0.1:${port}/` + (v === 'overview' ? '' : '#cam=' + v));
+    await page.goto(base + (v === 'overview' ? '' : '#cam=' + v));
     await page.waitForFunction('window.sagaReady === true', { timeout: 120000 });
     await new Promise((r) => setTimeout(r, 2500));          // textures + HDRI + shadow pass
     const gpu = await page.evaluate(() => { const g = document.createElement('canvas').getContext('webgl2');
