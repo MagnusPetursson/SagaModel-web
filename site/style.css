@@ -1,0 +1,26 @@
+html, body { margin: 0; height: 100%; overflow: hidden; background: #1b1b1b; font: 13px/1.35 Roboto, system-ui, sans-serif; color: #eee; }
+canvas { display: block; width: 100vw; height: 100vh; }
+.title { font-weight: 700; letter-spacing: .08em; }
+#loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: #1b1b1b; z-index: 10; }
+#loading .title { font-size: 22px; color: #E03A3F; }
+.bar { width: 260px; height: 4px; background: #333; }
+#prog { height: 100%; width: 0; background: #E03A3F; transition: width .2s; }
+#panel { position: fixed; top: 10px; left: 10px; width: 210px; max-height: calc(100vh - 20px); overflow-y: auto; background: rgba(20,20,20,.82); padding: 10px; border-radius: 6px; }
+#panel .title { color: #E03A3F; margin-bottom: 8px; }
+#ver { color: #888; font-weight: 400; letter-spacing: 0; font-size: 11px; }
+.row { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+.row input[type=range] { flex: 1; min-width: 0; }
+button { background: #333; color: #eee; border: 0; border-radius: 4px; padding: 5px 8px; cursor: pointer; font: inherit; }
+button:hover { background: #444; }
+button.on { background: #E03A3F; }
+.views .sub { color: #999; margin: 8px 0 4px; }
+#cams { display: flex; flex-wrap: wrap; gap: 4px; }
+#cams button { padding: 3px 6px; font-size: 12px; }
+#help { color: #999; font-size: 11px; margin-top: 10px; white-space: pre-line; }
+#stats { position: fixed; right: 8px; bottom: 6px; color: #888; font: 11px monospace; }
+#cross { position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); color: rgba(255,255,255,.7); display: none; pointer-events: none; }
+body.walk #cross { display: block; }
+@media (max-width: 600px) { #panel { width: 160px; font-size: 12px; } }
+#panel .title { cursor: pointer; }
+#panel.min > :not(.title) { display: none; }
+#panel.min .title { margin: 0; }
