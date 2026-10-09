@@ -1,0 +1,923 @@
+{
+ "source": "src.blend",
+ "cameras": [
+  {
+   "name": "WorkshopLong",
+   "shot_order": 10,
+   "pos": [
+    22.6,
+    1.65,
+    -24.0
+   ],
+   "target": [
+    23.5612,
+    1.5408,
+    -26.8398
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "HighCorner",
+   "shot_order": 11,
+   "pos": [
+    21.3,
+    3.45,
+    -23.6
+   ],
+   "target": [
+    22.8574,
+    2.747,
+    -26.0658
+   ],
+   "vfov": 64.65
+  },
+  {
+   "name": "BenchDetail",
+   "shot_order": 12,
+   "pos": [
+    24.95,
+    1.25,
+    -27.55
+   ],
+   "target": [
+    23.2436,
+    0.5187,
+    -25.1935
+   ],
+   "vfov": 32.27
+  },
+  {
+   "name": "ShopBot",
+   "shot_order": 13,
+   "pos": [
+    23.55,
+    1.75,
+    -22.55
+   ],
+   "target": [
+    22.3412,
+    1.1273,
+    -19.8759
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "CNC",
+   "shot_order": 14,
+   "pos": [
+    21.3,
+    1.65,
+    -21.35
+   ],
+   "target": [
+    22.5006,
+    1.2212,
+    -18.6344
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "LaserDetail",
+   "shot_order": 15,
+   "pos": [
+    31.2,
+    1.3,
+    -21.3
+   ],
+   "target": [
+    33.7309,
+    0.1611,
+    -20.1611
+   ],
+   "vfov": 37.3
+  },
+  {
+   "name": "LoungeLow",
+   "shot_order": 16,
+   "pos": [
+    29.2,
+    1.1,
+    -31.7
+   ],
+   "target": [
+    32.1566,
+    0.5918,
+    -31.7
+   ],
+   "vfov": 45.75
+  },
+  {
+   "name": "BookDetail",
+   "shot_order": 17,
+   "pos": [
+    29.05,
+    1.3,
+    -35.3
+   ],
+   "target": [
+    26.8439,
+    0.9013,
+    -33.3065
+   ],
+   "vfov": 25.36
+  },
+  {
+   "name": "FeltDetail",
+   "shot_order": 18,
+   "pos": [
+    22.4,
+    1.7,
+    -28.7
+   ],
+   "target": [
+    21.5354,
+    2.9351,
+    -31.2937
+   ],
+   "vfov": 37.3
+  },
+  {
+   "name": "MuralFront",
+   "shot_order": 19,
+   "pos": [
+    25.15,
+    1.6,
+    -26.25
+   ],
+   "target": [
+    26.0851,
+    1.7935,
+    -23.406
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "SewingDetail",
+   "shot_order": 20,
+   "pos": [
+    22.1,
+    1.35,
+    -33.4
+   ],
+   "target": [
+    19.9869,
+    0.2935,
+    -31.5511
+   ],
+   "vfov": 32.27
+  },
+  {
+   "name": "HallEntrance",
+   "shot_order": 21,
+   "pos": [
+    40.6,
+    1.62,
+    -36.4
+   ],
+   "target": [
+    37.6063,
+    1.62,
+    -36.5944
+   ],
+   "vfov": 45.75
+  },
+  {
+   "name": "Micro",
+   "shot_order": 22,
+   "pos": [
+    25.6,
+    1.65,
+    -33.3
+   ],
+   "target": [
+    24.2384,
+    1.2495,
+    -30.6569
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "CNCRoom",
+   "shot_order": 23,
+   "pos": [
+    25.05,
+    1.65,
+    -17.3
+   ],
+   "target": [
+    23.0953,
+    1.2156,
+    -19.5339
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "GlassToolWall",
+   "shot_order": 24,
+   "pos": [
+    23.6,
+    1.6,
+    -26.6
+   ],
+   "target": [
+    21.3187,
+    1.3368,
+    -24.6696
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "Textile",
+   "shot_order": 25,
+   "pos": [
+    28.1,
+    1.6,
+    -26.3
+   ],
+   "target": [
+    30.3722,
+    1.0515,
+    -28.1805
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "CompStorage",
+   "shot_order": 26,
+   "pos": [
+    23.4,
+    1.6,
+    -33.6
+   ],
+   "target": [
+    21.4413,
+    1.089,
+    -31.3858
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "Demo",
+   "shot_order": 27,
+   "pos": [
+    31.6,
+    1.6,
+    -35.0
+   ],
+   "target": [
+    30.0483,
+    1.406,
+    -37.5602
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "SecretDoor",
+   "shot_order": 28,
+   "pos": [
+    31.3,
+    1.6,
+    -34.2
+   ],
+   "target": [
+    28.941,
+    1.4725,
+    -36.049
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "BankOutside",
+   "shot_order": 29,
+   "pos": [
+    23.0,
+    1.65,
+    -31.3
+   ],
+   "target": [
+    25.0036,
+    1.6214,
+    -33.5326
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "Bank",
+   "shot_order": null,
+   "pos": [
+    27.2,
+    1.7,
+    -35.9
+   ],
+   "target": [
+    24.3398,
+    1.4446,
+    -36.7683
+   ],
+   "vfov": 64.65
+  },
+  {
+   "name": "BankCounter",
+   "shot_order": null,
+   "pos": [
+    23.0,
+    1.6,
+    -35.2
+   ],
+   "target": [
+    22.9043,
+    1.1693,
+    -38.1674
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "Counter",
+   "shot_order": null,
+   "pos": [
+    29.3,
+    1.65,
+    -27.4
+   ],
+   "target": [
+    31.0603,
+    1.2099,
+    -29.789
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Craft",
+   "shot_order": null,
+   "pos": [
+    24.4,
+    1.6,
+    -30.7
+   ],
+   "target": [
+    21.8056,
+    0.9919,
+    -32.0783
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Cutaway",
+   "shot_order": null,
+   "pos": [
+    42.5,
+    20.5,
+    -13.5
+   ],
+   "target": [
+    40.9109,
+    18.4583,
+    -15.0187
+   ],
+   "vfov": 34.11
+  },
+  {
+   "name": "Entrance",
+   "shot_order": null,
+   "pos": [
+    31.75,
+    1.62,
+    -35.25
+   ],
+   "target": [
+    30.317,
+    1.4495,
+    -32.6199
+   ],
+   "vfov": 61.56
+  },
+  {
+   "name": "FeltWall",
+   "shot_order": null,
+   "pos": [
+    26.6,
+    1.55,
+    -25.2
+   ],
+   "target": [
+    25.0814,
+    1.55,
+    -27.7872
+   ],
+   "vfov": 45.75
+  },
+  {
+   "name": "Interior_01",
+   "shot_order": null,
+   "pos": [
+    31.7,
+    1.65,
+    -27.6
+   ],
+   "target": [
+    28.8257,
+    1.495,
+    -28.4454
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "LaserRoom",
+   "shot_order": null,
+   "pos": [
+    30.0,
+    1.65,
+    -26.3
+   ],
+   "target": [
+    30.7591,
+    1.2433,
+    -23.4263
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Lounge",
+   "shot_order": null,
+   "pos": [
+    28.6,
+    1.55,
+    -34.3
+   ],
+   "target": [
+    29.911,
+    1.152,
+    -31.6311
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Mural",
+   "shot_order": null,
+   "pos": [
+    26.4,
+    1.6,
+    -29.2
+   ],
+   "target": [
+    26.6022,
+    1.6607,
+    -26.2074
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "PrintFarm",
+   "shot_order": null,
+   "pos": [
+    26.3,
+    1.55,
+    -26.2
+   ],
+   "target": [
+    28.4846,
+    1.2487,
+    -24.1661
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "PrusaClose",
+   "shot_order": null,
+   "pos": [
+    28.2125,
+    1.695,
+    -24.64
+   ],
+   "target": [
+    31.0139,
+    1.4001,
+    -25.6721
+   ],
+   "vfov": 28.41
+  },
+  {
+   "name": "StaffRoom",
+   "shot_order": null,
+   "pos": [
+    28.5,
+    1.6,
+    -19.35
+   ],
+   "target": [
+    31.3525,
+    1.0295,
+    -18.6165
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Workshop",
+   "shot_order": null,
+   "pos": [
+    26.6,
+    1.65,
+    -33.9
+   ],
+   "target": [
+    25.5923,
+    1.4988,
+    -31.0784
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Walk_01_Hall",
+   "shot_order": null,
+   "pos": [
+    42.0,
+    1.65,
+    -37.1
+   ],
+   "target": [
+    39.0042,
+    1.65,
+    -36.9415
+   ],
+   "vfov": 45.75
+  },
+  {
+   "name": "Walk_02_Entrance",
+   "shot_order": null,
+   "pos": [
+    33.9,
+    1.62,
+    -37.0
+   ],
+   "target": [
+    31.0828,
+    1.62,
+    -35.9687
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "Walk_03_Overview",
+   "shot_order": null,
+   "pos": [
+    50.1871,
+    21.0,
+    -21.3939
+   ],
+   "target": [
+    47.9964,
+    19.0245,
+    -21.9401
+   ],
+   "vfov": 37.3
+  },
+  {
+   "name": "Walk_04_Laser",
+   "shot_order": null,
+   "pos": [
+    31.0,
+    1.6,
+    -26.55
+   ],
+   "target": [
+    30.9603,
+    1.6,
+    -23.5503
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Walk_05_PrintFarm",
+   "shot_order": null,
+   "pos": [
+    26.8,
+    1.55,
+    -24.9
+   ],
+   "target": [
+    29.8,
+    1.55,
+    -24.9
+   ],
+   "vfov": 49.43
+  },
+  {
+   "name": "Walk_06_CNCGlass",
+   "shot_order": null,
+   "pos": [
+    22.9,
+    1.6,
+    -25.4
+   ],
+   "target": [
+    22.9,
+    1.6,
+    -22.4
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "Walk_07_CNCRoom",
+   "shot_order": null,
+   "pos": [
+    22.7,
+    1.9,
+    -16.4
+   ],
+   "target": [
+    22.8664,
+    1.9,
+    -19.3954
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "Walk_08_ToolWide",
+   "shot_order": null,
+   "pos": [
+    25.15,
+    1.7,
+    -22.9
+   ],
+   "target": [
+    23.2672,
+    1.7,
+    -25.2356
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "Walk_09_ElectronicsWide",
+   "shot_order": null,
+   "pos": [
+    27.25,
+    1.7,
+    -34.0
+   ],
+   "target": [
+    24.6371,
+    1.7,
+    -32.526
+   ],
+   "vfov": 58.72
+  },
+  {
+   "name": "Walk_10_Electronics",
+   "shot_order": null,
+   "pos": [
+    24.7,
+    1.5,
+    -32.7
+   ],
+   "target": [
+    24.7,
+    1.5,
+    -29.7
+   ],
+   "vfov": 45.75
+  },
+  {
+   "name": "Walk_11_Craft",
+   "shot_order": null,
+   "pos": [
+    30.7,
+    1.5,
+    -29.1
+   ],
+   "target": [
+    30.8427,
+    1.5,
+    -26.1034
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "Walk_12_Bank",
+   "shot_order": null,
+   "pos": [
+    33.6,
+    1.6,
+    -37.05
+   ],
+   "target": [
+    30.6001,
+    1.6,
+    -37.0759
+   ],
+   "vfov": 45.75
+  },
+  {
+   "name": "Walk_13_LoungeWide",
+   "shot_order": null,
+   "pos": [
+    29.0,
+    1.65,
+    -27.4
+   ],
+   "target": [
+    30.083,
+    1.65,
+    -30.1977
+   ],
+   "vfov": 53.7
+  },
+  {
+   "name": "Walk_14_Lounge",
+   "shot_order": null,
+   "pos": [
+    28.45,
+    1.05,
+    -31.7
+   ],
+   "target": [
+    31.45,
+    1.05,
+    -31.7
+   ],
+   "vfov": 45.75
+  },
+  {
+   "name": "Walk_15_Closing",
+   "shot_order": null,
+   "pos": [
+    29.7,
+    1.75,
+    -28.8
+   ],
+   "target": [
+    28.7015,
+    1.75,
+    -25.971
+   ],
+   "vfov": 58.72
+  }
+ ],
+ "triplanar": {
+  "Concrete_Exposed": {
+   "asset": "concrete_floor_worn_001",
+   "scale": 0.3333333134651184,
+   "rot_z": 0.0,
+   "diff": "concrete_floor_worn_001_diff.jpg",
+   "rough": "concrete_floor_worn_001_rough.jpg",
+   "hsv": [
+    0.5,
+    0.6000000238418579,
+    2.799999952316284
+   ],
+   "tint": null,
+   "tint_mix": 0.0,
+   "rough_mul": 1.0,
+   "joints": [
+    2.4000000953674316,
+    1.2000000476837158,
+    0.006000000052154064
+   ],
+   "fallback": [
+    0.9406196504744911,
+    0.9484849991975576,
+    0.9202673232972197
+   ]
+  },
+  "Ground_Pavers": {
+   "asset": "concrete_pavers",
+   "scale": 0.5208333134651184,
+   "rot_z": 0.0,
+   "diff": "concrete_pavers_diff.jpg",
+   "rough": "concrete_pavers_rough.jpg",
+   "hsv": null,
+   "tint": null,
+   "tint_mix": 0.0,
+   "rough_mul": 1.0,
+   "joints": null,
+   "fallback": [
+    0.32783683937304886,
+    0.28877720890159253,
+    0.24614354752702639
+   ]
+  },
+  "OSB": {
+   "asset": "oriented_strand_board",
+   "scale": 0.39840638637542725,
+   "rot_z": 0.0,
+   "diff": "oriented_strand_board_diff.jpg",
+   "rough": "oriented_strand_board_rough.jpg",
+   "hsv": null,
+   "tint": null,
+   "tint_mix": 0.0,
+   "rough_mul": 1.0,
+   "joints": null,
+   "fallback": [
+    0.7283710993215209,
+    0.5872463106989017,
+    0.4380524555217562
+   ]
+  },
+  "Paint_White": {
+   "asset": "painted_plaster_wall",
+   "scale": 0.5,
+   "rot_z": 0.0,
+   "diff": "painted_plaster_wall_diff.jpg",
+   "rough": "painted_plaster_wall_rough.jpg",
+   "hsv": null,
+   "tint": [
+    0.8549926280975342,
+    0.838798999786377,
+    0.7991027235984802
+   ],
+   "tint_mix": 0.8199999928474426,
+   "rough_mul": 1.0,
+   "joints": null,
+   "fallback": [
+    0.821932192546708,
+    0.8031368159944899,
+    0.7683231170919484
+   ]
+  },
+  "Parquet": {
+   "asset": "wood_floor_worn",
+   "scale": 0.5000001192092896,
+   "rot_z": 1.5707963705062866,
+   "diff": "wood_floor_worn_diff.jpg",
+   "rough": "wood_floor_worn_rough.jpg",
+   "hsv": null,
+   "tint": null,
+   "tint_mix": 0.0,
+   "rough_mul": 1.350000023841858,
+   "joints": null,
+   "fallback": [
+    0.5445963810561807,
+    0.35008618565188954,
+    0.18360333468626777
+   ]
+  },
+  "Plywood_Birch": {
+   "asset": "plywood",
+   "scale": 2.000000238418579,
+   "rot_z": 0.0,
+   "diff": "plywood_diff.jpg",
+   "rough": "plywood_rough.jpg",
+   "hsv": [
+    0.5149999856948853,
+    0.6000000238418579,
+    3.0
+   ],
+   "tint": null,
+   "tint_mix": 0.0,
+   "rough_mul": 2.200000047683716,
+   "joints": null,
+   "fallback": [
+    1.0,
+    1.0,
+    0.754414676044803
+   ]
+  },
+  "Sofa_LightGrey": {
+   "asset": "rough_linen",
+   "scale": 6.143260955810547,
+   "rot_z": 0.0,
+   "diff": "rough_linen_diff.jpg",
+   "rough": "rough_linen_rough.jpg",
+   "hsv": null,
+   "tint": [
+    0.41999998688697815,
+    0.41999998688697815,
+    0.4000000059604645
+   ],
+   "tint_mix": 0.75,
+   "rough_mul": 1.0,
+   "joints": null,
+   "fallback": [
+    0.4577202975706314,
+    0.48297855915734544,
+    0.5017475401909905
+   ]
+  }
+ },
+ "glass": {
+  "Glass_Manifestation_Dots": 0.12,
+  "SAMLA_Lid": 0.45,
+  "SAMLA_Clear": 0.32,
+  "Glass_Clear": 0.12
+ },
+ "bounds": {
+  "min": [
+   19.45,
+   -0.25,
+   -45.2
+  ],
+  "max": [
+   47.03,
+   4.17,
+   -12.81
+  ]
+ },
+ "sun_dir": [
+  0.9138,
+  0.3774,
+  0.1501
+ ],
+ "sun_strength": 4.0,
+ "hdri_rot_z": -2.913961172103882,
+ "exposure": 0.800000011920929,
+ "objects": 1889
+}
