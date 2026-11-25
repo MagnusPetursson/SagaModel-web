@@ -1,10 +1,11 @@
 name: Site code
 # Viewer-code changes (site/) go live without a model rebuild: the site files on gh-pages are replaced,
 # model/ is kept. Model rebuilds come from the SagaModel repo's "Web preview" workflow.
+# Release-only since 2026-11-25 (Magnus): no push publishes. Publish = push a tag `web-vN` in THIS repo (site code
+# only) or Actions -> Run workflow, and only with Magnus's explicit yes for that release.
 on:
   push:
-    branches: [main]
-    paths: ['site/**']
+    tags: ['web-v*']
   workflow_dispatch:
 
 concurrency:

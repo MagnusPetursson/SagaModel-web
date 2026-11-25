@@ -12,10 +12,11 @@ Site: https://magnuspetursson.github.io/SagaModel-web/
 
 ## How it updates
 
-Fully on GitHub, so no local machine needs to be on:
+Release-only since 2026-11-25 (Magnús): no push publishes. Publishing needs his explicit yes per release, then a
+`web-vN` tag (or a manual run from the Actions tab). Fully on GitHub, so no local machine needs to be on:
 
 ```
-push to SagaModel main touching *.blend or assets/
+tag web-vN pushed to SagaModel (full rebuild)
   └─ SagaModel/.github/workflows/web-preview.yml  (GitHub Actions, ~5 min; Blender 5.2.2 cached)
        └─ tools/publish.sh
             ├─ tools/build.sh   git show HEAD:SagaV2_work.blend → headless Blender export/export_glb.py
@@ -23,13 +24,13 @@ push to SagaModel main touching *.blend or assets/
             ├─ tools/snap.mjs   headless Chrome smoke test (software GL in CI; fails on page errors)
             └─ force-push dist/ as a single orphan commit to gh-pages  (deploy key, secret SAGA_WEB_DEPLOY_KEY)
 
-push to SagaModel-web main touching site/
+tag web-vN pushed to SagaModel-web (viewer code only)
   └─ .github/workflows/site.yml   swaps the viewer files on gh-pages, keeps model/
 ```
 
 Both workflows can be started by hand from the repo's Actions tab (Run workflow).
 
-Local, any machine with Blender ≥ 5 and Node: `tools/publish.sh` (committed HEAD), or
+Local, any machine with Blender ≥ 5 and Node: `tools/publish.sh` (committed HEAD; this PUBLISHES, same rule), or
 `tools/build.sh --file ~/…/SagaV2_work.blend` to preview the live working copy without publishing
 (`cd dist && python3 -m http.server`). Screenshots of any views:
 `node tools/snap.mjs out/ overview MuralFront LaserDetail` (`SNAP_URL=https://… ` tests the live site).
