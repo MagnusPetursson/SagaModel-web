@@ -1,7 +1,7 @@
 # SagaModel-web
 
 Live, performant web preview of the **Fab Lab SAGA** Blender model
-(private source repo `MagnusPetursson/SagaModel`, file `SagaV2_work.blend`).
+(source repo `FabLab-Saga/SagaModel`, file `SagaV2_work.blend`).
 
 Site: https://magnuspetursson.github.io/SagaModel-web/
 
