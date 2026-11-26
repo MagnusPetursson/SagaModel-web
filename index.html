@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab Lab SAGA — live model</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/",
+  "three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.16/build/index.module.js"
+} }
+</script>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="loading"><div class="title">FAB LAB SAGA</div><div class="bar"><div id="prog"></div></div><div id="ltext">Loading model…</div></div>
+
+<div id="panel">
+  <div class="title">FAB LAB SAGA <span id="ver"></span></div>
+  <div class="row">
+    <button id="mOrbit" class="on">Orbit</button>
+    <button id="mWalk">Walk</button>
+  </div>
+  <label class="row">Cut height <input id="cut" type="range" min="1.2" max="4.5" step="0.05" value="2.6"><span id="cutv"></span></label>
+  <label class="row"><input id="shadows" type="checkbox" checked> Sun shadows</label>
+  <div class="views"><div class="sub">Views</div><div id="cams"></div></div>
+  <div id="help"></div>
+</div>
+<div id="stats"></div>
+<div id="cross">+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
